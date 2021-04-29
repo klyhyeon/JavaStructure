@@ -1,4 +1,4 @@
-package javastructure;
+package javastructure.ListStructure;
 
 
 import java.util.Arrays;
