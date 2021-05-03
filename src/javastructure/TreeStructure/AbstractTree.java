@@ -77,4 +77,62 @@ public abstract class AbstractTree<E> implements Tree<E> {
         }
         return snapshot;
     }
+
+    /** Insert indent while preorder()*/
+    public void printPreorderIndent(Tree<E> t, Position<E> p, int d) {
+        //System.out.println(spaces(2*d) + p.getElement());
+        for (Position<E> c : children(p))
+            printPreorderIndent(t, c, d+1);
+    }
+
+    /** Add numbering to printPreorderIndent()*/
+    public void printPreorderLabeled(Tree<E> T, Position<E> p, ArrayList<Integer> path) {
+        int d = path.size();
+        //System.out.println(spaces(2*d));
+        for (int j = 0; j < d; j++)
+            System.out.print(path.get(j) + (j == d - 1 ? " " : "."));
+        System.out.println(p.getElement());
+        path.add(1);
+        for (Position<E> c : T.children(p)) {
+            printPreorderLabeled(T, c, path);
+            path.set(d, 1 + path.get(d));
+        }
+        path.remove(d);
+    }
+
+    /** Computing disk space*/
+    public static int diskSpace(Tree<Integer> T, Position<Integer> p) {
+        int subtotal = p.getElement();
+        for (Position<Integer> c : T.children(p))
+            subtotal += diskSpace(T, c);
+        return subtotal;
+    }
+
+    /** Parenthetic Representations of a Tree*/
+    public void parentheticTree(Tree<E> T, Position<E> p) {
+        System.out.print(p.getElement());
+//        for (Position<E> c : T.children(p)) {
+//            parentheticTree(T, c);
+//            System.out.print(")");
+//        }
+        for (int i = 0; i < numChildren(p); i++) {
+            ArrayList<Position<E>> c = (ArrayList<Position<E>>) children(p);
+            if (i == 0)
+                System.out.print("(");
+            else
+                System.out.println(", ");
+            parentheticTree(T, c.get(i));
+            System.out.print(")");
+        }
+    //ParentheticTree Answer code
+        if (T.isInternal(p)) {
+            boolean firstTime = true;
+            for (Position<E> c : children(p)) {
+                System.out.print((firstTime ? " (" : ", "));
+                firstTime = false;
+                parentheticTree(T, c);
+            }
+            System.out.print(")");
+        }
+    }
 }

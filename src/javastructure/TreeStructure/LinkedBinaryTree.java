@@ -165,8 +165,4 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         return temp;
     }
 
-
-
-
-
 }

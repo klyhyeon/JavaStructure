@@ -52,4 +52,15 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E>
             inorderSubtree(root(), snapshot);
         return snapshot;
     }
+
+    /** Using Inorder Traversal for Tree Drawing*/
+    public <E> int layout(BinaryTree<E> T, Position<E> p, int d, int x) {
+        if (T.left(p) != null)
+            x = layout(T, T.left(p), d+1, x);
+//        p.getElement().setX(x++);
+//        p.getElement().setY(d);
+        if (T.right(p) != null)
+            x = layout(T, T.right(p), d+1, x);
+        return x;
+    }
 }
