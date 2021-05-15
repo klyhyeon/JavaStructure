@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Map.Entry;
 
+import static java.util.Objects.compare;
+
 public class SortedTableMap<K,V> extends AbstractMap<K,V> {
     //Skipped extending AbstractSortedMap(Available online)
     private ArrayList<MapEntry<K,V>> table = new ArrayList<>();
     public SortedTableMap() {super();}
-    public SortedTableMap(Comparator<K> comp) {super(comp);}
+    public SortedTableMap(Comparator<K> comp) {super();}
 
     private int findIndex(K key) {return findIndex(key, 0, table.size()-1);}
 
@@ -19,6 +21,10 @@ public class SortedTableMap<K,V> extends AbstractMap<K,V> {
         if (comp == 0) return mid;
         else if (comp < 0) return findIndex(key, low, mid - 1);
         else return findIndex(key, mid + 1, high);
+    }
+
+    private int compare(K key, MapEntry<K,V> kvMapEntry) {
+        return 0;
     }
 
     public int size() {return table.size();}

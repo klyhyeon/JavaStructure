@@ -78,6 +78,7 @@ public abstract class AbstractTree<E> implements Tree<E> {
         return snapshot;
     }
 
+
     /** Insert indent while preorder()*/
     public void printPreorderIndent(Tree<E> t, Position<E> p, int d) {
         //System.out.println(spaces(2*d) + p.getElement());
