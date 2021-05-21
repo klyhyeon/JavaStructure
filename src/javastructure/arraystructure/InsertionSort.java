@@ -31,4 +31,19 @@ public class InsertionSort {
             }
         }
     }
+
+    public void insertionSort3(char[] data) {
+        int l = data.length;
+        for (int i = 1; i < l; i++) {
+            char target = data[i];
+            int j = i;
+            for (j = j; j > 0; j--) {
+                if (target < data[j-1])
+                    data[j] = data[j-1];
+                else
+                    break;
+            }
+            data[j] = target;
+        }
+    }
 }

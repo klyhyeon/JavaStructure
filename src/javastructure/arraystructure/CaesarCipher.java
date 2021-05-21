@@ -7,7 +7,7 @@ public class CaesarCipher {
     public CaesarCipher(int rotation) {
         for (int k = 0; k < 26; k++) {
             encoder[k] = (char) ('A' + (k + rotation) % 26);
-            decoder[k] = (char) ('A' + (k - rotation + 26) % 26);
+            decoder[k] = (char) ('A' + (k - rotation + 26) % 26); //add 26 to avoid negative value
         }
     }
     /** Returns String representing encrypted message*/
