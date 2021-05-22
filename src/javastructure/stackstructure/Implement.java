@@ -94,4 +94,26 @@ public class Implement {
         }
         return buffer.isEmpty();
     }
+
+    public boolean isHTMLMatched3(String html) {
+        //<, >, /, indexOf,
+        //loop condition j == -1
+        int j = html.indexOf('<');
+        CircularlyLinkedList<String> buffer = new CircularlyLinkedList<>();
+        while (j != -1) {
+            int k = html.indexOf('>',j+1);
+            if (k == -1) return false;
+            String tag = html.substring(j+1,k);
+            if (!tag.startsWith("/"))
+                buffer.addFirst(tag);
+            else {
+                if (buffer.isEmpty())
+                    return false;
+                if (!tag.substring(1).equals(buffer.removeFirst()))
+                    return false;
+            }
+            j = html.indexOf('<',k+1);
+        } //end of while
+        return buffer.isEmpty();
+    }
 }
