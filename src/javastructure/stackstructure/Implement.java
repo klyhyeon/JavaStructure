@@ -6,6 +6,9 @@ import lombok.ToString;
 public class Implement {
 
     public static boolean isMatched(String expression) {
+
+        String forCommitTest = "";
+
         final String opening = "[{(";
         final String closing = ")}]";
         CircularlyLinkedList<Character> buffer = new CircularlyLinkedList<>();
